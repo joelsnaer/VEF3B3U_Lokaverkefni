@@ -1,0 +1,22 @@
+{
+  "short_name": "Lokaverkefni",
+  "name": "VEF3B3U Lokaverkefni",
+  "icons": [
+    {
+      "src": "image/icon",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "image/icon-2x.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "image/icon-4x.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html?launcher=true"
+}
