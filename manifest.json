@@ -1,7 +1,7 @@
 {
   "short_name": "Lokaverkefni",
   "name": "VEF3B3U Lokaverkefni",
-  "display": "fullscreen",
+  "display": "standalone",
   "icons": [
     {
       "src": "image/icon",
