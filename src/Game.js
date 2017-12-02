@@ -15,7 +15,7 @@ Ball.Game.prototype = {
 		this.movementForce = 10;
 		this.ballStartPos = { x: Ball._WIDTH*0.5, y: 450 };
 		this.themeSound = this.game.add.audio('audio-theme');
-		this.themeSound.volume = 0.4;
+		this.themeSound.volume = 0.2;
 		this.themeSound.play();
 
 
