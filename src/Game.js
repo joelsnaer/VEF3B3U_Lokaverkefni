@@ -139,7 +139,7 @@ Ball.Game.prototype = {
 		if (true) {};
 		if (this.audioStatus) {
 			this.themeSound.play();
-		};
+		}
 		else{
 			this.themeSound.pause();
 		}
