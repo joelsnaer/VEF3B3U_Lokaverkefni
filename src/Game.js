@@ -15,7 +15,9 @@ Ball.Game.prototype = {
 		this.movementForce = 10;
 		this.ballStartPos = { x: Ball._WIDTH*0.5, y: 450 };
 		this.themeSound = this.game.add.audio('audio-theme');
+		this.themeSound.volume = 0.4;
 		this.themeSound.play();
+
 
 		this.pauseButton = this.add.button(Ball._WIDTH-8, 8, 'button-pause', this.managePause, this);
 		this.pauseButton.anchor.set(1,0);
