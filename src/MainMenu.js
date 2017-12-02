@@ -11,6 +11,6 @@ Ball.MainMenu.prototype = {
 		// button to "read the article"
 	},
 	startGame: function() {
-		this.game.state.start('Howto');
+		this.game.state.start('Game');
 	}
 };

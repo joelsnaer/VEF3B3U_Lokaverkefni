@@ -22,6 +22,7 @@ Ball.Preloader.prototype = {
 		this.load.spritesheet('button-start', 'img/button-start.png', 146, 51);
 
 		this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
+		this.load.audio('audio-goal', ['audio/clap.ogg', 'audio/clap.mp3', 'audio/clap.m4a']);
 	},
 	create: function() {
 		this.game.state.start('MainMenu');
