@@ -32,7 +32,7 @@ Ball.Game.prototype = {
 		this.physics.enable(this.hole, Phaser.Physics.ARCADE);
 		this.hole.anchor.set(0.5);
 		this.hole.body.setSize(2, 2);
-		this.goalSound = this.game.add.audio('audio-gpal');
+		this.goalSound = this.game.add.audio('audio-goal');
 
 		this.ball = this.add.sprite(this.ballStartPos.x, this.ballStartPos.y, 'ball');
 		this.ball.anchor.set(0.5);
