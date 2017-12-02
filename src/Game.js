@@ -15,6 +15,7 @@ Ball.Game.prototype = {
 		this.movementForce = 10;
 		this.ballStartPos = { x: Ball._WIDTH*0.5, y: 450 };
 		this.themeSound = this.game.add.audio('audio-theme');
+		this.themeSound.play();
 
 		this.pauseButton = this.add.button(Ball._WIDTH-8, 8, 'button-pause', this.managePause, this);
 		this.pauseButton.anchor.set(1,0);
@@ -77,7 +78,7 @@ Ball.Game.prototype = {
 				{ x: 0, y: 240, t: 'w' },
 				{ x: 128, y: 240, t: 'w' },
 				{ x: 200, y: 52, t: 'h' }
-			],
+			],*
 			[
 				{ x: 78, y: 352, t: 'h' },
 				{ x: 78, y: 320, t: 'w' },
@@ -135,10 +136,6 @@ Ball.Game.prototype = {
 		this.audioButton.animations.play(this.audioStatus);
 	},
 	update: function() {
-		if(this.audioStatus) {
-			this.themeSound.play();
-		}
-
 		if(this.keys.left.isDown) {
 			this.ball.body.velocity.x -= this.movementForce;
 		}
