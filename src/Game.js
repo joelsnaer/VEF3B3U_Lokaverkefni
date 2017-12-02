@@ -169,13 +169,13 @@ Ball.Game.prototype = {
 	},
 	finishLevel: function() {
 		if(this.level >= this.maxLevels) {
-			this.bounceSound.play();
+			this.goalSound.play();
 			this.totalTimer += this.timer;
 			alert('Congratulations, game completed!\nTotal time of play: '+this.totalTimer+' seconds!');
 			this.game.state.start('MainMenu');
 		}
 		else {
-			this.bounceSound.play();
+			this.goalSound.play();
 			alert('Congratulations, level '+this.level+' completed!');
 			this.totalTimer += this.timer;
 			this.timer = 0;
