@@ -142,6 +142,8 @@ Ball.Game.prototype = {
 		}
 		else{
 			this.themeSound.pause();
+			this.bounceSound.pause();
+			this.goalSound.pause();
 		}
 		
 	},
