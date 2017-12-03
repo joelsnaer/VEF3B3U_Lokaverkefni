@@ -28,9 +28,9 @@ Ball.Game.prototype = {
 		this.audioButton.animations.add('true', [0], 10, true);
 		this.audioButton.animations.add('false', [1], 10, true);
 		this.audioButton.animations.play(this.audioStatus);
-		this.timerText = this.game.add.text(15, 15, "Time: "+this.timer, this.fontBig);
-		this.levelText = this.game.add.text(120, 10, "Level: "+this.level+" / "+this.maxLevels, this.fontSmall);
-		this.totalTimeText = this.game.add.text(120, 30, "Total time: "+this.totalTimer, this.fontSmall);
+		this.timerText = this.game.add.text(15, 15, "Tími: "+this.timer, this.fontBig);
+		this.levelText = this.game.add.text(120, 10, "Borð: "+this.level+" / "+this.maxLevels, this.fontSmall);
+		this.totalTimeText = this.game.add.text(120, 30, "Heildar tími: "+this.totalTimer, this.fontSmall);
 
 		this.hole = this.add.sprite(Ball._WIDTH*0.5, 90, 'hole');
 		this.physics.enable(this.hole, Phaser.Physics.ARCADE);
@@ -121,8 +121,8 @@ Ball.Game.prototype = {
 	},
 	updateCounter: function() {
 		this.timer++;
-		this.timerText.setText("Time: "+this.timer);
-		this.totalTimeText.setText("Total time: "+(this.totalTimer+this.timer));
+		this.timerText.setText("Tími: "+this.timer);
+		this.totalTimeText.setText("Heildar tími: "+(this.totalTimer+this.timer));
 	},
 	managePause: function() {
 		this.game.paused = true;
@@ -187,7 +187,7 @@ Ball.Game.prototype = {
 				this.goalSound.play();
 			}
 			this.totalTimer += this.timer;
-			alert('Congratulations, game completed!\nTotal time of play: '+this.totalTimer+' seconds!');
+			alert('Til hamingju, þú vannst leikinn!\nHeildar tíminn þinn var: '+this.totalTimer+' sekúndur!');
 			this.themeSound.pause();
 			this.game.state.start('MainMenu');
 		}
@@ -195,14 +195,14 @@ Ball.Game.prototype = {
 			if(this.audioStatus) {
 				this.goalSound.play();
 			}
-			alert('Congratulations, level '+this.level+' completed!');
+			alert('Til hamingju, þú kláraðir borð '+this.level+'!');
 
 			this.totalTimer += this.timer;
 			this.timer = 0;
 			this.level++;
-			this.timerText.setText("Time: "+this.timer);
-			this.totalTimeText.setText("Total time: "+this.totalTimer);
-			this.levelText.setText("Level: "+this.level+" / "+this.maxLevels);
+			this.timerText.setText("Tími: "+this.timer);
+			this.totalTimeText.setText("Heildar tími: "+this.totalTimer);
+			this.levelText.setText("Borð: "+this.level+" / "+this.maxLevels);
 			this.ball.body.x = this.ballStartPos.x;
 			this.ball.body.y = this.ballStartPos.y;
 			this.ball.body.velocity.x = 0;
