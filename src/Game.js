@@ -11,7 +11,7 @@ Ball.Game.prototype = {
 		this.timer = 0;
 		this.totalTimer = 0;
 		this.level = 1;
-		this.maxLevels = 5;
+		this.maxLevels = 10;
 		this.movementForce = 10;
 		this.ballStartPos = { x: Ball._WIDTH*0.5, y: 450 };
 		this.themeSound = this.game.add.audio('audio-theme');
@@ -66,6 +66,38 @@ Ball.Game.prototype = {
 	initLevels: function() {
 		this.levels = [];
 		this.levelData = [
+			[
+				{ x: 96, y: 224, t: 'w' }
+			],
+			[
+				{ x: 72, y: 320, t: 'w' },
+				{ x: 200, y: 320, t: 'h' },
+				{ x: 72, y: 150, t: 'w' }
+			],
+			[
+				{ x: 64, y: 352, t: 'h' },
+				{ x: 224, y: 352, t: 'h' },
+				{ x: 0, y: 240, t: 'w' },
+				{ x: 128, y: 240, t: 'w' },
+				{ x: 200, y: 52, t: 'h' }
+			],
+			[
+				{ x: 78, y: 352, t: 'h' },
+				{ x: 78, y: 320, t: 'w' },
+				{ x: 0, y: 240, t: 'w' },
+				{ x: 192, y: 240, t: 'w' },
+				{ x: 30, y: 150, t: 'w' },
+				{ x: 158, y: 150, t: 'w' }
+			],
+			[
+				{ x: 188, y: 352, t: 'h' },
+				{ x: 92, y: 320, t: 'w' },
+				{ x: 0, y: 240, t: 'w' },
+				{ x: 128, y: 240, t: 'w' },
+				{ x: 256, y: 240, t: 'h' },
+				{ x: 180, y: 52, t: 'h' },
+				{ x: 52, y: 148, t: 'w' }
+			],
 			[
 				{ x: 96, y: 224, t: 'w' }
 			],
