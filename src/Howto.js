@@ -1,3 +1,5 @@
+//Ég nota ekki þetta file, finnst ekki þurfa
+
 Ball.Howto = function(game) {
 };
 Ball.Howto.prototype = {

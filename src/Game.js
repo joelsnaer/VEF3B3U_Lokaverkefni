@@ -1,6 +1,7 @@
 Ball.Game = function(game) {};
 Ball.Game.prototype = {
 	create: function() {
+		//Loadar inn sprite-in og býr till öll value sem eru notuð
 		this.add.sprite(0, 0, 'screen-bg');
 		this.add.sprite(0, 0, 'panel');
 		this.physics.startSystem(Phaser.Physics.ARCADE);
@@ -11,14 +12,14 @@ Ball.Game.prototype = {
 		this.timer = 0;
 		this.totalTimer = 0;
 		this.level = 1;
-		this.maxLevels = 7;
+		this.maxLevels = 8;
 		this.movementForce = 10;
 		this.ballStartPos = { x: Ball._WIDTH*0.5, y: 450 };
-		this.themeSound = this.game.add.audio('audio-theme');
-		this.themeSound.volume = 0.05;
-		this.themeSound.play();
+		this.themeSound = this.game.add.audio('audio-theme'); //Loadar inn theme songið
+		this.themeSound.volume = 0.05; //Lækkar volume-ið
+		this.themeSound.play(); //Spilar hann
 
-
+		//Býr til UI-ið á toppinum
 		this.pauseButton = this.add.button(Ball._WIDTH-8, 8, 'button-pause', this.managePause, this);
 		this.pauseButton.anchor.set(1,0);
 		this.pauseButton.input.useHandCursor = true;
@@ -32,18 +33,21 @@ Ball.Game.prototype = {
 		this.levelText = this.game.add.text(120, 10, "Borð: "+this.level+" / "+this.maxLevels, this.fontSmall);
 		this.totalTimeText = this.game.add.text(120, 30, "Heildar tími: "+this.totalTimer, this.fontSmall);
 
+		//Loadar inn holuna fyrir leikinn
 		this.hole = this.add.sprite(Ball._WIDTH*0.5, 90, 'hole');
 		this.physics.enable(this.hole, Phaser.Physics.ARCADE);
 		this.hole.anchor.set(0.5);
 		this.hole.body.setSize(2, 2);
 		this.goalSound = this.game.add.audio('audio-goal');
 
+		//Loadar inn boltan
 		this.ball = this.add.sprite(this.ballStartPos.x, this.ballStartPos.y, 'ball');
 		this.ball.anchor.set(0.5);
 		this.physics.enable(this.ball, Phaser.Physics.ARCADE);
 		this.ball.body.setSize(18, 18);
 		this.ball.body.bounce.set(0.3, 0.3);
 
+		//Býr til öll levelin
 		this.initLevels();
 		this.showLevel(1);
 		this.keys = this.game.input.keyboard.createCursorKeys();
@@ -53,6 +57,7 @@ Ball.Game.prototype = {
 
 		this.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
 
+		//Býr til borderinn
 		this.borderGroup = this.add.group();
 		this.borderGroup.enableBody = true;
 		this.borderGroup.physicsBodyType = Phaser.Physics.ARCADE;
@@ -63,7 +68,7 @@ Ball.Game.prototype = {
 		this.borderGroup.setAll('body.immovable', true);
 		this.bounceSound = this.game.add.audio('audio-bounce');
 	},
-	initLevels: function() {
+	initLevels: function() {  //Býr til öll levelin
 		this.levels = [];
 		this.levelData = [
 			[
@@ -79,6 +84,13 @@ Ball.Game.prototype = {
 				{ x: 72, y: 320, t: 'w' },
 				{ x: 200, y: 320, t: 'h' },
 				{ x: 72, y: 150, t: 'w' }
+			],
+			[
+				{ x: 0, y: 285, t: 'w' },
+				{ x: 130, y: 285, t: 'w' },
+				{ x: 250, y: 350, t: 'h' },
+				{ x: 200, y: 55, t: 'h' },
+				{ x: 70, y: 155, t: 'w' }
 			],
 			[
 				{ x: 64, y: 352, t: 'h' },
@@ -135,12 +147,12 @@ Ball.Game.prototype = {
 		}
 		this.levels[lvl-1].visible = true;
 	},
-	updateCounter: function() {
+	updateCounter: function() { //Update-ar klukkuna hverja sekúndu
 		this.timer++;
 		this.timerText.setText("Tími: "+this.timer);
 		this.totalTimeText.setText("Heildar tími: "+(this.totalTimer+this.timer));
 	},
-	managePause: function() {
+	managePause: function() { //Vinnur með pausa takkan
 		this.game.paused = true;
 		var pausedText = this.add.text(Ball._WIDTH*0.5, 250, "Game paused,\ntap anywhere to continue.", this.fontMessage);
 		pausedText.anchor.set(0.5);
@@ -149,21 +161,21 @@ Ball.Game.prototype = {
 			this.game.paused = false;
 		}, this);
 	},
-	manageAudio: function() {
+	manageAudio: function() { //Vinnur með mute takkan
 		this.audioStatus =! this.audioStatus;
 		this.audioButton.animations.play(this.audioStatus);
 		if (true) {};
-		if (this.audioStatus) {
+		if (this.audioStatus) { //Ef það er unmute-að þá er spilað theme song
 			this.themeSound.play();
 		}
-		else{
+		else{ //Þegar það er mute-að er pausað öll hljóð til að stöðva þau
 			this.themeSound.pause();
 			this.bounceSound.pause();
 			this.goalSound.pause();
 		}
 		
 	},
-	update: function() {
+	update: function() { //Vinnur með controlin
 		if(this.keys.left.isDown) {
 			this.ball.body.velocity.x -= this.movementForce;
 		}
@@ -180,7 +192,7 @@ Ball.Game.prototype = {
 		this.physics.arcade.collide(this.ball, this.levels[this.level-1], this.wallCollision, null, this);
 		this.physics.arcade.overlap(this.ball, this.hole, this.finishLevel, null, this);
 	},
-	wallCollision: function() {
+	wallCollision: function() { //Ef þú klessir á veggin er spilað sound og síminn vibrate-ar
 		if(this.audioStatus) {
 			this.bounceSound.play();
 		}
@@ -197,13 +209,13 @@ Ball.Game.prototype = {
 		Ball._player.body.velocity.x += x;
 		Ball._player.body.velocity.y += y*0.5;
 	},
-	finishLevel: function() {
+	finishLevel: function() { //Þegar þú klárar level
 		if(this.level >= this.maxLevels) {
 			if(this.audioStatus) {
 				this.goalSound.play();
 			}
 			this.totalTimer += this.timer;
-			alert('Til hamingju, þú vannst leikinn!\nHeildar tíminn þinn var: '+this.totalTimer+' sekúndur!');
+			alert('Til hamingju, þú vannst leikinn!\nHeildar tíminn þinn var: '+this.totalTimer+' sekúndur!'); //Birtir að þú vannst leikin
 			this.themeSound.pause();
 			this.game.state.start('MainMenu');
 		}
@@ -211,8 +223,9 @@ Ball.Game.prototype = {
 			if(this.audioStatus) {
 				this.goalSound.play();
 			}
-			alert('Til hamingju, þú kláraðir borð '+this.level+'!');
+			alert('Til hamingju, þú kláraðir borð '+this.level+'!'); //Birtir til hamingju að klára borðið
 
+			//Reset-að allar breytur
 			this.totalTimer += this.timer;
 			this.timer = 0;
 			this.level++;
