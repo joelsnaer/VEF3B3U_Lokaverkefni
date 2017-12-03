@@ -188,6 +188,7 @@ Ball.Game.prototype = {
 			}
 			this.totalTimer += this.timer;
 			alert('Congratulations, game completed!\nTotal time of play: '+this.totalTimer+' seconds!');
+			this.themeSound.pause();
 			this.game.state.start('MainMenu');
 		}
 		else {
@@ -195,6 +196,7 @@ Ball.Game.prototype = {
 				this.goalSound.play();
 			}
 			alert('Congratulations, level '+this.level+' completed!');
+
 			this.totalTimer += this.timer;
 			this.timer = 0;
 			this.level++;
